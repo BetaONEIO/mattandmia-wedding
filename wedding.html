@@ -43,20 +43,29 @@
 
     <section id="story" class="section">
         <h2>Our Story</h2>
-        <div class="story-carousel" data-interval="5000" aria-label="Photos of Matt and Mia">
-            <div class="story-carousel__frame">
-                <img class="story-carousel__img is-active" src="story/01.jpg" alt="Matt and Mia" />
-                <img class="story-carousel__img" src="story/02.jpg" alt="" loading="lazy" />
-                <img class="story-carousel__img" src="story/03.jpg" alt="" loading="lazy" />
-                <img class="story-carousel__img" src="story/04.jpg" alt="" loading="lazy" />
-                <img class="story-carousel__img" src="story/05.jpg" alt="" loading="lazy" />
-                <img class="story-carousel__img" src="story/06.jpg" alt="" loading="lazy" />
-                <img class="story-carousel__img" src="story/07.jpg" alt="" loading="lazy" />
+        <div class="story-grid">
+            <div class="story-marquee" aria-label="Photos of Matt and Mia">
+                <div class="story-marquee__track">
+                    <img src="story/01.jpg" alt="Matt and Mia" />
+                    <img src="story/02.jpg" alt="" loading="lazy" />
+                    <img src="story/03.jpg" alt="" loading="lazy" />
+                    <img src="story/04.jpg" alt="" loading="lazy" />
+                    <img src="story/05.jpg" alt="" loading="lazy" />
+                    <img src="story/06.jpg" alt="" loading="lazy" />
+                    <img src="story/07.jpg" alt="" loading="lazy" />
+                    <img src="story/01.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/02.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/03.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/04.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/05.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/06.jpg" alt="" aria-hidden="true" loading="lazy" />
+                    <img src="story/07.jpg" alt="" aria-hidden="true" loading="lazy" />
+                </div>
             </div>
-        </div>
-        <div class="story">
-            <p>We met at Harper Adams University, where we were both studying Agriculture and both ended up at Christian Union. We were good friends for a long time before it was anything more &mdash; it wasn't until the back end of Mia's placement year that we finally started seeing each other properly.</p>
-            <p>Matt proposed at the start of April, and we still can't quite believe we get to do this with the people we love most around us. Thank you for being part of it.</p>
+            <div class="story">
+                <p>We met at Harper Adams University, where we were both studying Agriculture and both ended up at Christian Union. We were good friends for a long time before it was anything more &mdash; it wasn't until the back end of Mia's placement year that we finally started seeing each other properly.</p>
+                <p>Matt proposed at the start of April, and we still can't quite believe we get to do this with the people we love most around us. Thank you for being part of it.</p>
+            </div>
         </div>
     </section>
 
@@ -64,18 +73,21 @@
         <h2>The Details</h2>
         <div class="details">
             <article>
+                <div class="details__photo"><img src="story/02.jpg" alt="" loading="lazy" /></div>
                 <h3>Ceremony</h3>
                 <p class="details__time">2:00 pm</p>
                 <p>Abbey Baptist Church</p>
                 <p>Abingdon<br />OX14 3JB</p>
             </article>
             <article>
+                <div class="details__photo"><img src="story/04.jpg" alt="" loading="lazy" /></div>
                 <h3>Reception</h3>
                 <p class="details__time">4:00 pm</p>
                 <p>Stonehill Barn</p>
                 <p>Drayton<br />OX14 4AA</p>
             </article>
             <article>
+                <div class="details__photo"><img src="story/06.jpg" alt="" loading="lazy" /></div>
                 <h3>Evening &amp; Ceilidh</h3>
                 <p class="details__time">From 7:00 pm</p>
                 <p>Stonehill Barn</p>
@@ -98,15 +110,24 @@
         <h2>Travel &amp; Stay</h2>
         <div class="travel">
             <article>
+                <div class="travel__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </div>
                 <h3>Getting there</h3>
                 <p>Both venues are in Oxfordshire, a few minutes apart by car. We'll share more detailed travel notes closer to the date.</p>
                 <p><strong>Stonehill Barn what3words:</strong> <a href="https://what3words.com/degrading.winters.narrow">degrading.winters.narrow</a></p>
             </article>
             <article>
+                <div class="travel__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><line x1="20" y1="20" x2="15.5" y2="15.5"/></svg>
+                </div>
                 <h3>Where to stay</h3>
                 <p>We're putting together a list of nearby places to stay &mdash; it'll be added here closer to the date.</p>
             </article>
             <article>
+                <div class="travel__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17v-4l2-5h10l2 5v4"/><path d="M3 17h18"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+                </div>
                 <h3>Parking</h3>
                 <p>There are several large car parks within a few minutes' walk of Abbey Baptist Church.</p>
                 <p>Parking at Stonehill Barn is <strong>limited</strong> &mdash; please car-share where you can.</p>
@@ -220,9 +241,6 @@
     </section>
 
     <footer class="footer">
-        <div class="footer__photo">
-            <img src="footer-photo.jpg" alt="" loading="lazy" />
-        </div>
         <p>With love, Matt &amp; Mia</p>
         <p><a href="#" data-signout>Sign out</a></p>
     </footer>

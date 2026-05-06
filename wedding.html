@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Matt &amp; Mia — The Wedding</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -15,15 +17,11 @@
 
     <header class="hero">
         <div class="hero__inner">
-            <p class="hero__date">Saturday · 12 September 2026</p>
-            <h1 class="hero__title">
-                <span>Matt</span>
-                <span class="hero__amp">&amp;</span>
-                <span>Mia</span>
-            </h1>
+            <p class="hero__date">Saturday · 19 September 2026</p>
+            <img class="hero__logo" src="logo.png" alt="Matt &amp; Mia" />
             <p class="hero__location">Are getting married &mdash; and we'd love you there for all of it.</p>
 
-            <div class="countdown" id="countdown" data-date="2026-09-12T14:00:00" aria-label="Countdown to the wedding">
+            <div class="countdown" id="countdown" data-date="2026-09-19T14:00:00" aria-label="Countdown to the wedding">
                 <div><strong id="cd-days">—</strong><span>days</span></div>
                 <div><strong id="cd-hours">—</strong><span>hours</span></div>
                 <div><strong id="cd-mins">—</strong><span>mins</span></div>
@@ -38,15 +36,27 @@
         <a href="#schedule">Schedule</a>
         <a href="#travel">Travel &amp; Stay</a>
         <a href="#rsvp">RSVP</a>
+        <a href="#gift-list">Gift List</a>
         <a href="#faq">FAQ</a>
         <a href="#" data-signout class="nav__signout">Sign out</a>
     </nav>
 
     <section id="story" class="section">
         <h2>Our Story</h2>
+        <div class="story-carousel" data-interval="5000" aria-label="Photos of Matt and Mia">
+            <div class="story-carousel__frame">
+                <img class="story-carousel__img is-active" src="story/01.jpg" alt="Matt and Mia" />
+                <img class="story-carousel__img" src="story/02.jpg" alt="" loading="lazy" />
+                <img class="story-carousel__img" src="story/03.jpg" alt="" loading="lazy" />
+                <img class="story-carousel__img" src="story/04.jpg" alt="" loading="lazy" />
+                <img class="story-carousel__img" src="story/05.jpg" alt="" loading="lazy" />
+                <img class="story-carousel__img" src="story/06.jpg" alt="" loading="lazy" />
+                <img class="story-carousel__img" src="story/07.jpg" alt="" loading="lazy" />
+            </div>
+        </div>
         <div class="story">
-            <p>We met one rainy Tuesday in a coffee shop neither of us was supposed to be in &mdash; Matt was hiding from a meeting, Mia was waiting out the weather. Six years, three flats and one slightly unhinged rescue dog later, here we are.</p>
-            <p>We can't wait to share the day with the people who have shaped our story so far. Thank you for being part of it.</p>
+            <p>We met at Harper Adams University, where we were both studying Agriculture and both ended up at Christian Union. We were good friends for a long time before it was anything more &mdash; it wasn't until the back end of Mia's placement year that we finally started seeing each other properly.</p>
+            <p>Matt proposed at the start of April, and we still can't quite believe we get to do this with the people we love most around us. Thank you for being part of it.</p>
         </div>
     </section>
 
@@ -56,19 +66,20 @@
             <article>
                 <h3>Ceremony</h3>
                 <p class="details__time">2:00 pm</p>
-                <p>St. Mary's Chapel</p>
-                <p>Hartington Lane<br />Cotswolds, GL54</p>
+                <p>Abbey Baptist Church</p>
+                <p>Abingdon<br />OX14 3JB</p>
             </article>
             <article>
                 <h3>Reception</h3>
-                <p class="details__time">4:30 pm</p>
-                <p>Manor House Barn</p>
-                <p>Long Compton Road<br />Cotswolds, GL54</p>
+                <p class="details__time">4:00 pm</p>
+                <p>Stonehill Barn</p>
+                <p>Drayton<br />OX14 4AA</p>
             </article>
             <article>
-                <h3>Dress Code</h3>
-                <p class="details__time">Black tie optional</p>
-                <p>Long dresses, suits, or whatever makes you feel wonderful. Bring layers &mdash; the barn cools down after dark.</p>
+                <h3>Evening &amp; Ceilidh</h3>
+                <p class="details__time">From 7:00 pm</p>
+                <p>Stonehill Barn</p>
+                <p>Evening guests join us &mdash; bring something you can dance in.</p>
             </article>
         </div>
     </section>
@@ -76,15 +87,10 @@
     <section id="schedule" class="section">
         <h2>The Day</h2>
         <ol class="schedule">
-            <li><span class="schedule__time">1:30 pm</span><span class="schedule__event">Guests arrive at the chapel</span></li>
-            <li><span class="schedule__time">2:00 pm</span><span class="schedule__event">Ceremony</span></li>
-            <li><span class="schedule__time">3:00 pm</span><span class="schedule__event">Drinks &amp; canapés on the lawn</span></li>
-            <li><span class="schedule__time">5:00 pm</span><span class="schedule__event">Wedding breakfast</span></li>
-            <li><span class="schedule__time">7:30 pm</span><span class="schedule__event">Speeches</span></li>
-            <li><span class="schedule__time">8:00 pm</span><span class="schedule__event">Evening guests arrive · cutting of the cake</span></li>
-            <li><span class="schedule__time">8:30 pm</span><span class="schedule__event">First dance &amp; party</span></li>
-            <li><span class="schedule__time">10:00 pm</span><span class="schedule__event">Evening food</span></li>
-            <li><span class="schedule__time">12:00 am</span><span class="schedule__event">Carriages</span></li>
+            <li><span class="schedule__time">1:30 pm</span><span class="schedule__event">Guests arrive at Abbey Baptist Church</span></li>
+            <li><span class="schedule__time">2:00 pm</span><span class="schedule__event">Wedding service</span></li>
+            <li><span class="schedule__time">4:00 pm</span><span class="schedule__event">Reception at Stonehill Barn</span></li>
+            <li><span class="schedule__time">7:00 pm</span><span class="schedule__event">Evening guests arrive · ceilidh</span></li>
         </ol>
     </section>
 
@@ -93,17 +99,17 @@
         <div class="travel">
             <article>
                 <h3>Getting there</h3>
-                <p>The nearest station is Moreton-in-Marsh, with direct trains from London Paddington (~1h 40m). From there it's a 15-minute taxi to the venue.</p>
+                <p>Both venues are in Oxfordshire, a few minutes apart by car. We'll share more detailed travel notes closer to the date.</p>
+                <p><strong>Stonehill Barn what3words:</strong> <a href="https://what3words.com/degrading.winters.narrow">degrading.winters.narrow</a></p>
             </article>
             <article>
                 <h3>Where to stay</h3>
-                <p><strong>The Lygon Arms</strong> — 4 mi, walkable countryside hotel.</p>
-                <p><strong>Manor House Inn</strong> — on-site rooms, limited; ask us before booking.</p>
-                <p><strong>Cotswold Cottages</strong> — group of self-catered cottages, great for families.</p>
+                <p>We're putting together a list of nearby places to stay &mdash; it'll be added here closer to the date.</p>
             </article>
             <article>
                 <h3>Parking</h3>
-                <p>Free on-site parking is available at both the chapel and the barn. Cars can be left overnight and collected by 11 am the next morning.</p>
+                <p>There are several large car parks within a few minutes' walk of Abbey Baptist Church.</p>
+                <p>Parking at Stonehill Barn is <strong>limited</strong> &mdash; please car-share where you can.</p>
             </article>
         </div>
     </section>
@@ -111,27 +117,105 @@
     <section id="rsvp" class="section">
         <h2>RSVP</h2>
         <p class="rsvp__lead">Kindly reply by <strong>1 August 2026</strong>.</p>
-        <p>Please email us at <a href="mailto:mattandmia@example.com">mattandmia@example.com</a> with your full name, the names of anyone in your party, and any dietary requirements.</p>
-        <p class="rsvp__note">If you have an access need we should know about, just say &mdash; we'd rather you ask than worry.</p>
+
+        <!-- TODO: replace `your-form-id` with the form ID from formspree.io (or another form service). Form fields are name=… below. -->
+        <form class="rsvp-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="hidden" name="_subject" value="Wedding RSVP — full day" />
+
+            <div class="field">
+                <label for="rsvp-name">Your name(s)</label>
+                <input id="rsvp-name" name="name" type="text" required />
+            </div>
+
+            <div class="field">
+                <label for="rsvp-email">Email</label>
+                <input id="rsvp-email" name="email" type="email" required />
+            </div>
+
+            <div class="field">
+                <span class="group-label">Will you be there?</span>
+                <div class="radio-group">
+                    <label><input type="radio" name="attending" value="yes" required /> Joyfully accept</label>
+                    <label><input type="radio" name="attending" value="no" /> Regretfully decline</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="rsvp-adults">Adults attending</label>
+                    <input id="rsvp-adults" name="adults" type="number" min="0" />
+                </div>
+                <div class="field">
+                    <label for="rsvp-children">Children attending</label>
+                    <input id="rsvp-children" name="children" type="number" min="0" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="rsvp-party">Names of everyone in your party</label>
+                <textarea id="rsvp-party" name="party_names" placeholder="One per line"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="rsvp-diet">Dietary requirements &amp; allergies</label>
+                <textarea id="rsvp-diet" name="dietary"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="rsvp-cars">Cars you'll be bringing (parking is limited at Stonehill Barn)</label>
+                <select id="rsvp-cars" name="cars">
+                    <option value="0">0 — getting a lift</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3+">3 or more</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="rsvp-access">Any access needs we should know about?</label>
+                <textarea id="rsvp-access" name="access"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="rsvp-songs">Song requests for the evening</label>
+                <input id="rsvp-songs" name="song_requests" type="text" />
+            </div>
+
+            <div class="field">
+                <label for="rsvp-notes">Anything else we should know</label>
+                <textarea id="rsvp-notes" name="notes"></textarea>
+            </div>
+
+            <button type="submit">Send RSVP</button>
+        </form>
+
+        <p class="rsvp__note">Trouble with the form? Drop us a message instead.</p>
+    </section>
+
+    <section id="gift-list" class="section">
+        <h2>Gift List</h2>
+        <p>Your being there is more than enough. If you'd still like to give something, we have a wish list at John Lewis.</p>
+        <div class="gift-card">
+            <h3>Matt &amp; Mia's John Lewis Wish List</h3>
+            <p>A few bits and pieces we'd love for our home together. The list is hosted by John Lewis &mdash; tap below to view and reserve items.</p>
+            <a href="https://www.johnlewis.com/wish-list/TTJTKRH" class="gift-button" target="_blank" rel="noopener noreferrer">View the wish list</a>
+        </div>
     </section>
 
     <section id="faq" class="section section--alt">
         <h2>FAQ</h2>
         <dl class="faq">
-            <dt>Are children welcome?</dt>
-            <dd>We adore your kids, but we've kept the day to adults and immediate family only. Babysitting can be arranged at the Lygon Arms if helpful.</dd>
+            <dt>What's a ceilidh?</dt>
+            <dd>A live band and a caller who walks everyone through the steps &mdash; no experience needed, just comfortable shoes and a willingness to be flung around a barn.</dd>
 
             <dt>Can I bring a plus one?</dt>
-            <dd>Plus ones are named on your invitation. If we haven't named yours, we hope you'll forgive us &mdash; space is tight.</dd>
+            <dd>Plus ones are named on your invitation. If we haven't named yours, we hope you'll forgive us &mdash; numbers are tight.</dd>
 
-            <dt>Is there a gift registry?</dt>
-            <dd>Your presence is the present. If you'd still like to give something, a contribution to our honeymoon fund would be very gratefully received &mdash; details on the inside of your invitation.</dd>
+            <dt>Are children welcome?</dt>
+            <dd>Children named on your invitation are very welcome. If you'd like to bring others, please drop us a message before RSVPing.</dd>
 
-            <dt>What's the weather like?</dt>
-            <dd>September in the Cotswolds is usually mild but unpredictable. Bring a wrap or jacket for the evening just in case.</dd>
-
-            <dt>Will the ceremony be outdoors?</dt>
-            <dd>The ceremony is in the chapel; drinks afterwards are on the lawn (weather permitting), with the barn as a cosy backup.</dd>
+            <dt>What's the dress code?</dt>
+            <dd>Smart, but pick something you can dance in &mdash; the ceilidh isn't kind to anything too tight or too tall.</dd>
         </dl>
     </section>
 

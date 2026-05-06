@@ -40,3 +40,21 @@
         });
     });
 })();
+
+// Story carousel — crossfade through photos on a fixed interval.
+(() => {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.story-carousel').forEach((root) => {
+        const imgs = root.querySelectorAll('.story-carousel__img');
+        if (imgs.length < 2) return;
+        const interval = parseInt(root.dataset.interval || '5000', 10);
+        let i = 0;
+        const advance = () => {
+            imgs[i].classList.remove('is-active');
+            i = (i + 1) % imgs.length;
+            imgs[i].classList.add('is-active');
+        };
+        if (reduced) return;
+        setInterval(advance, interval);
+    });
+})();

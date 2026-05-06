@@ -431,6 +431,50 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 
 .details p { margin: 0.25rem 0; }
 
+.details-blocks {
+    display: grid;
+    gap: 5rem;
+    margin-top: 5rem;
+}
+
+.details-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.details-block:nth-child(even) > .details-block__text { order: 2; }
+
+.details-block__text {
+    text-align: left;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.details-block__text p { margin: 0; }
+
+.details-block__photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 6px 24px rgba(31, 51, 88, 0.08);
+}
+
+@media (max-width: 720px) {
+    .details-blocks { gap: 3rem; margin-top: 3.5rem; }
+    .details-block {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .details-block:nth-child(even) > .details-block__text { order: unset; }
+    .details-block__text { text-align: center; }
+}
+
 /* ───── Schedule ───── */
 
 .schedule {

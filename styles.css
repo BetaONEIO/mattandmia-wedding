@@ -579,6 +579,20 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     background: var(--bg);
 }
 .footer a { font-size: 0.75rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); }
+.footer__photo {
+    background: #fff;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin: 0 auto 2.5rem;
+    max-width: 720px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+.footer__photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
 
 /* ───── Responsive ───── */
 

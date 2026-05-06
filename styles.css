@@ -434,7 +434,6 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 .details-blocks {
     display: grid;
     gap: 5rem;
-    margin-top: 5rem;
 }
 
 .details-block {
@@ -493,7 +492,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 }
 
 @media (max-width: 720px) {
-    .details-blocks { gap: 3rem; margin-top: 3.5rem; }
+    .details-blocks { gap: 3rem; }
     .details-block {
         grid-template-columns: 1fr;
         gap: 1.25rem;

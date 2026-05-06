@@ -1,12 +1,14 @@
 :root {
-    --bg:        #f7f3ee;
-    --bg-alt:    #ede5d8;
-    --ink:       #2c2a26;
-    --ink-soft:  #5a544c;
-    --accent:    #8a6a4a;
-    --rule:      #cdbfae;
-    --serif:     "Cormorant Garamond", "Times New Roman", serif;
-    --sans:      "Montserrat", system-ui, -apple-system, sans-serif;
+    --bg:          #ffffff;
+    --bg-alt:      #eef3fb;     /* pale blue */
+    --bg-warm:     #fbf5e1;     /* pale yellow */
+    --ink:         #1f3358;     /* deep navy (matches logo) */
+    --ink-soft:    #5a6a83;
+    --accent:      #c9a85a;     /* gold (matches logo) */
+    --accent-soft: #f0e3b0;     /* pastel yellow */
+    --rule:        #dde6f1;     /* pale blue line */
+    --serif:       "Cormorant Garamond", "Times New Roman", serif;
+    --sans:        "Montserrat", system-ui, -apple-system, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -20,12 +22,17 @@ body {
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    cursor: url('cursor.png') 0 0, auto;
+}
+
+a, button, [role="button"], label, input[type="submit"] {
+    cursor: url('cursor.png') 0 0, pointer;
 }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em; color: var(--ink); }
 
 .visually-hidden {
     position: absolute !important;
@@ -49,14 +56,14 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     justify-content: center;
     padding: 2rem;
     background:
-        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.6), transparent 60%),
-        radial-gradient(ellipse at 70% 80%, rgba(205,191,174,0.5), transparent 60%),
+        radial-gradient(ellipse at 30% 20%, rgba(238, 243, 251, 0.9), transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(251, 245, 225, 0.9), transparent 60%),
         var(--bg);
 }
 
 .gate__inner {
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
     text-align: center;
 }
 
@@ -76,6 +83,14 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     font-size: clamp(4rem, 12vw, 7rem);
     margin: 0 0 1.5rem;
     line-height: 1;
+    color: var(--ink);
+}
+
+.gate__logo {
+    display: block;
+    margin: 0 auto 1.5rem;
+    width: clamp(220px, 60vw, 360px);
+    height: auto;
 }
 
 .gate__hint {
@@ -141,8 +156,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     text-align: center;
     padding: 4rem 1.5rem;
     background:
-        radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.6), transparent 60%),
-        radial-gradient(ellipse at 70% 80%, rgba(205,191,174,0.5), transparent 60%),
+        radial-gradient(ellipse at 30% 20%, rgba(238, 243, 251, 0.9), transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(251, 245, 225, 0.9), transparent 60%),
         var(--bg);
     border-bottom: 1px solid var(--rule);
 }
@@ -158,6 +173,13 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     margin: 0 0 2rem;
 }
 
+.hero__logo {
+    display: block;
+    margin: 0 auto;
+    width: clamp(280px, 70vw, 560px);
+    height: auto;
+}
+
 .hero__title {
     font-family: var(--serif);
     font-weight: 300;
@@ -167,6 +189,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     display: flex;
     flex-direction: column;
     gap: 0.1em;
+    color: var(--ink);
 }
 
 .hero__title .hero__amp {
@@ -204,6 +227,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 400;
     line-height: 1;
+    color: var(--ink);
 }
 
 .countdown span {
@@ -225,7 +249,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     flex-wrap: wrap;
     gap: 2rem;
     padding: 1rem 1.5rem;
-    background: rgba(247,243,238,0.92);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--rule);
     font-size: 0.8rem;
@@ -275,6 +299,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     margin: 0 0 3rem;
     position: relative;
     font-weight: 300;
+    display: block;
+    width: 100%;
 }
 
 .section h2::after {
@@ -299,6 +325,31 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 }
 
 .story p + p { margin-top: 1.5rem; }
+
+.story-carousel {
+    max-width: 460px;
+    margin: 0 auto 3rem;
+}
+.story-carousel__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, rgba(0,0,0,0) 95%);
+    mask-image: radial-gradient(ellipse at center, #000 55%, rgba(0,0,0,0) 95%);
+}
+.story-carousel__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.4s ease-in-out;
+}
+.story-carousel__img.is-active { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    .story-carousel__img { transition: none; }
+}
 
 /* ───── Details ───── */
 
@@ -371,8 +422,9 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 
 .travel article {
     padding: 1.5rem;
-    background: rgba(255,255,255,0.5);
+    background: var(--bg-warm);
     border: 1px solid var(--rule);
+    border-radius: 4px;
 }
 
 .travel h3 {
@@ -388,6 +440,115 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 #rsvp { text-align: center; max-width: 640px; }
 .rsvp__lead { font-family: var(--serif); font-size: 1.4rem; color: var(--ink-soft); }
 .rsvp__note { font-style: italic; color: var(--ink-soft); margin-top: 2rem; font-size: 0.95rem; }
+
+.rsvp-form {
+    max-width: 560px;
+    margin: 2.5rem auto 0;
+    text-align: left;
+    display: grid;
+    gap: 1.25rem;
+}
+
+.rsvp-form .field { display: grid; gap: 0.4rem; }
+
+.rsvp-form > .field > label,
+.rsvp-form .group-label {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form input[type="email"],
+.rsvp-form input[type="number"],
+.rsvp-form textarea,
+.rsvp-form select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--rule);
+    background: #fff;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--ink);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.rsvp-form input:focus,
+.rsvp-form textarea:focus,
+.rsvp-form select:focus { border-color: var(--accent); }
+
+.rsvp-form textarea { min-height: 96px; resize: vertical; }
+
+.rsvp-form .radio-group {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    padding-top: 0.25rem;
+}
+.rsvp-form .radio-group label {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    text-transform: none; letter-spacing: 0; font-size: 1rem; color: var(--ink);
+}
+
+.rsvp-form .row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+}
+@media (max-width: 600px) {
+    .rsvp-form .row { grid-template-columns: 1fr; }
+}
+
+.rsvp-form button {
+    justify-self: center;
+    margin-top: 0.5rem;
+    padding: 0.85rem 2.25rem;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    cursor: url('cursor.png') 0 0, pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.rsvp-form button:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+/* ───── Gift list ───── */
+
+#gift-list { text-align: center; }
+.gift-card {
+    margin: 2rem auto 0;
+    max-width: 560px;
+    padding: 2.5rem 2rem;
+    background: var(--bg-warm);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+}
+.gift-card h3 {
+    margin: 0 0 0.75rem;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.gift-card p { color: var(--ink-soft); margin: 0.5rem 0 1.75rem; }
+.gift-card .gift-button {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.8rem;
+    transition: background 0.15s, color 0.15s;
+}
+.gift-card .gift-button:hover {
+    background: var(--ink); color: #fff; text-decoration: none;
+}
 
 /* ───── FAQ ───── */
 
@@ -415,8 +576,9 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     font-style: italic;
     color: var(--ink-soft);
     font-size: 1.1rem;
+    background: var(--bg);
 }
-.footer a { font-size: 0.75rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; }
+.footer a { font-size: 0.75rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); }
 
 /* ───── Responsive ───── */
 

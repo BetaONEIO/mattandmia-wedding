@@ -191,6 +191,67 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     height: auto;
 }
 
+/* ───── Wordmark logo (CSS recreation of the printed mark) ───── */
+
+.wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.34em;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    color: var(--ink);
+    font-size: clamp(1.7rem, 7.5vw, 4.4rem);
+    line-height: 1;
+}
+
+.wordmark__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.55em;
+}
+
+.wordmark__rule {
+    flex: 1 1 auto;
+    height: 1px;
+    background: var(--accent);
+}
+
+.wordmark__star {
+    flex: 0 0 auto;
+    width: 0.22em;
+    height: 0.44em;
+    background: var(--accent);
+    clip-path: polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%);
+}
+
+.wordmark__names {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
+    white-space: nowrap;
+}
+
+.wordmark__amp {
+    color: var(--accent);
+    margin: 0 0.06em;
+}
+
+.wordmark__est {
+    flex: 0 0 auto;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 0.26em;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
 .hero__title {
     font-family: var(--serif);
     font-weight: 300;

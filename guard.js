@@ -4,10 +4,8 @@
     let token = null;
     try { token = sessionStorage.getItem('mm_access'); } catch (_) { /* ignore */ }
 
-    // wedding password unlocks both pages; meal unlocks only the evening page.
-    const allowed =
-        token === 'wedding' ||
-        (token === 'meal' && required === 'meal');
+    // wedding password unlocks every page; otherwise the token must match the page.
+    const allowed = token === 'wedding' || token === required;
 
     if (!allowed) {
         window.location.replace('index.html');

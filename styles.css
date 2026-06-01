@@ -47,6 +47,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 .body--gate {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
 }
 
 .gate {
@@ -59,6 +60,16 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
         radial-gradient(ellipse at 30% 20%, rgba(238, 243, 251, 0.9), transparent 60%),
         radial-gradient(ellipse at 70% 80%, rgba(251, 245, 225, 0.9), transparent 60%),
         var(--bg);
+}
+
+/* When the gate sits below a hero on index.html, let the hero breathe and
+   keep the password prompt as a comfortable section underneath. */
+.hero--gate { min-height: 60vh; padding: 3rem 1.5rem 2rem; }
+.hero--gate .hero__location { margin-bottom: 0; }
+.gate--below {
+    flex: 0 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    background: var(--bg);
 }
 
 .gate__inner {

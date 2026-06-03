@@ -152,9 +152,12 @@
         <h2>RSVP</h2>
         <p class="rsvp__lead">Kindly reply by <strong>1 August 2026</strong>.</p>
 
-        <!-- TODO: replace `your-form-id` with the form ID from formspree.io (or another form service). Form fields are name=… below. -->
-        <form class="rsvp-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <!-- Submissions are emailed via FormSubmit (formsubmit.co) to miadallyn24@gmail.com.
+             The FIRST submission triggers a one-time activation email — confirm it once to switch the form on. -->
+        <form class="rsvp-form" action="https://formsubmit.co/miadallyn24@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Wedding RSVP — full day" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="field">
                 <label for="rsvp-name">Your name(s)</label>
@@ -223,7 +226,7 @@
             <button type="submit">Send RSVP</button>
         </form>
 
-        <p class="rsvp__note">Trouble with the form? Drop us a message instead.</p>
+        <p class="rsvp__note">Trouble with the form? <a href="mailto:miadallyn24@gmail.com?subject=Wedding%20RSVP">Drop us a message instead</a>.</p>
     </section>
 
     <section id="gift-list" class="section">

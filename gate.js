@@ -1,12 +1,11 @@
 (() => {
-    // wedding  → full day (church + reception + evening)
-    // ceremony → church service only
-    // meal     → evening reception only
+    // specialday → full day (church + reception + evening), token stays "wedding"
+    // meal       → evening reception only
     // Passwords are compared by SHA-256 hash so the words aren't sitting in plain text.
+    // (The ceremony page is now public — no password required.)
     const ROUTES = [
-        { word: 'wedding',  target: 'wedding.html',  token: 'wedding'  },
-        { word: 'ceremony', target: 'ceremony.html', token: 'ceremony' },
-        { word: 'meal',     target: 'meal.html',     token: 'meal'     },
+        { word: 'specialday', target: 'wedding.html', token: 'wedding' },
+        { word: 'meal',       target: 'meal.html',    token: 'meal'    },
     ];
 
     const form  = document.getElementById('gate-form');

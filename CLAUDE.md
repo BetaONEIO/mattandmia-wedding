@@ -46,14 +46,14 @@ open http://127.0.0.1:8765/
 
 Repo: https://github.com/BetaONEIO/mattandmia-wedding (currently public).
 
-Not yet deployed. Easiest options:
-- **GitHub Pages** — Settings → Pages → Deploy from `main`. Free, zero config. URL is public though, and password words are in `gate.js` source.
-- **Netlify / Cloudflare Pages** — same drop-in. Add HTTP basic auth on top if you want real protection.
+**Live on Cloudflare Pages: https://mattandmia.pages.dev** (a custom domain is planned but not yet attached). Pushing to `main` triggers a new deploy.
+
+- **RSVP forms** post to `miadallyn24@gmail.com` via FormSubmit (formsubmit.co). FormSubmit needs a one-time activation — submit the live form once and click the confirmation email it sends to that address.
 - **Make repo private** if you want the password words out of public view — the *deployed* JS is still readable by visitors, but the source repo is no longer indexable.
 
 ## Security notes
 
-The gate is **light protection only**. `gate.js` literally contains the words `wedding` and `meal` as JS strings — anyone who views source can read them. The hashing only stops the words appearing as plaintext in network logs. This is the norm for wedding sites; it keeps casual snoopers and search engines out (`<meta name="robots" content="noindex,nofollow">` is set on every page) but is not a real auth boundary. If you ever need real auth, put the site behind Cloudflare Access or Netlify password protection.
+The gate is **light protection only**. `gate.js` literally contains the words `specialday` and `meal` as JS strings — anyone who views source can read them. The hashing only stops the words appearing as plaintext in network logs. This is the norm for wedding sites; it keeps casual snoopers and search engines out (`<meta name="robots" content="noindex,nofollow">` is set on every page) but is not a real auth boundary. If you ever need real auth, put the site behind Cloudflare Access or Netlify password protection.
 
 ## Placeholders to replace before sharing
 

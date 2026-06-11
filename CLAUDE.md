@@ -17,16 +17,18 @@ Passwords (case-insensitive, compared by SHA-256):
 | `church`     | Ceremony page only; token is `ceremony`  |
 | `meal`       | Evening page only                        |
 
-Every content page is now gated — each loads `guard.js` and declares a `data-requires` token. The `wedding` token satisfies every page; otherwise the token must match the page.
+Every content page is now gated — each loads `guard.js` via `<script src="guard.js" data-requires="TOKEN"></script>` in the `<head>`. The guard reads the required token from its own `<script>` tag (`document.currentScript`), so it runs synchronously in the head **before** the body paints and redirects to `index.html` if the session token doesn't satisfy it. The `wedding` token satisfies every page; otherwise the token must match the page.
+
+> Note: `data-requires` lives on the guard `<script>` tag, **not** on `<body>`. An earlier version read `document.body.dataset.requires` from a head script, but `document.body` is `null` at that point, so the guard silently failed and every page rendered ungated.
 
 ## File layout
 
 ```
 index.html      hero + gate UI
 gate.js         hashes the input, sets sessionStorage["mm_access"], redirects
-wedding.html    full-day content;   <body data-requires="wedding">
-ceremony.html   church-only content; <body data-requires="ceremony">
-meal.html       evening content;     <body data-requires="meal">
+wedding.html    full-day content;    guard.js data-requires="wedding"
+ceremony.html   church-only content; guard.js data-requires="ceremony"
+meal.html       evening content;     guard.js data-requires="meal"
 guard.js        loaded first on each content page; redirects to index.html
                 if sessionStorage token doesn't satisfy data-requires.
                 "wedding" satisfies every page; otherwise token must match.

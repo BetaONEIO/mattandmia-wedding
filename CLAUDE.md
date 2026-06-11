@@ -1,13 +1,12 @@
 # Matt & Mia — Wedding Site
 
-A small static site with a password gate. Three audiences, two passwords, three content pages.
+A small static site with a password gate. Two audiences, two passwords, two content pages.
 
 ## What it is
 
 - `index.html` — landing page: hero up top with the password prompt underneath.
 - `wedding.html` — full-day site for guests invited to ceremony + reception + evening.
 - `ceremony.html` — church-only site for guests invited to the service only.
-- `meal.html` — evening-only site for guests invited to the evening reception.
 
 Passwords (case-insensitive, compared by SHA-256):
 
@@ -15,7 +14,6 @@ Passwords (case-insensitive, compared by SHA-256):
 | ------------ | ---------------------------------------- |
 | `specialday` | All pages (full day); token is `wedding` |
 | `church`     | Ceremony page only; token is `ceremony`  |
-| `meal`       | Evening page only                        |
 
 Every content page is now gated — each loads `guard.js` via `<script src="guard.js" data-requires="TOKEN"></script>` in the `<head>`. The guard reads the required token from its own `<script>` tag (`document.currentScript`), so it runs synchronously in the head **before** the body paints and redirects to `index.html` if the session token doesn't satisfy it. The `wedding` token satisfies every page; otherwise the token must match the page.
 
@@ -28,7 +26,6 @@ index.html      hero + gate UI
 gate.js         hashes the input, sets sessionStorage["mm_access"], redirects
 wedding.html    full-day content;    guard.js data-requires="wedding"
 ceremony.html   church-only content; guard.js data-requires="ceremony"
-meal.html       evening content;     guard.js data-requires="meal"
 guard.js        loaded first on each content page; redirects to index.html
                 if sessionStorage token doesn't satisfy data-requires.
                 "wedding" satisfies every page; otherwise token must match.
@@ -56,11 +53,11 @@ Repo: https://github.com/BetaONEIO/mattandmia-wedding (currently public).
 
 ## Security notes
 
-The gate is **light protection only**. `gate.js` literally contains the words `specialday` and `meal` as JS strings — anyone who views source can read them. The hashing only stops the words appearing as plaintext in network logs. This is the norm for wedding sites; it keeps casual snoopers and search engines out (`<meta name="robots" content="noindex,nofollow">` is set on every page) but is not a real auth boundary. If you ever need real auth, put the site behind Cloudflare Access or Netlify password protection.
+The gate is **light protection only**. `gate.js` literally contains the words `specialday` and `church` as JS strings — anyone who views source can read them. The hashing only stops the words appearing as plaintext in network logs. This is the norm for wedding sites; it keeps casual snoopers and search engines out (`<meta name="robots" content="noindex,nofollow">` is set on every page) but is not a real auth boundary. If you ever need real auth, put the site behind Cloudflare Access or Netlify password protection.
 
 ## Placeholders to replace before sharing
 
-Search for these and swap for the real values — they are scattered across `wedding.html` and `meal.html`:
+Search for these and swap for the real values — they are scattered across `wedding.html` and `ceremony.html`:
 
 - **Date**: `12 September 2026` and the matching `data-date="2026-09-12T..."` on the countdowns
 - **Ceremony venue**: `St. Mary's Chapel`, `Hartington Lane`

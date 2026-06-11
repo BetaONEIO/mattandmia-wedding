@@ -6,17 +6,18 @@ A small static site with a password gate. Three audiences, two passwords, three 
 
 - `index.html` — landing page: hero up top with the password prompt underneath.
 - `wedding.html` — full-day site for guests invited to ceremony + reception + evening.
-- `ceremony.html` — church-only site for guests invited to the service only. **Public — no password.**
+- `ceremony.html` — church-only site for guests invited to the service only.
 - `meal.html` — evening-only site for guests invited to the evening reception.
 
 Passwords (case-insensitive, compared by SHA-256):
 
-| Word         | Unlocks                                 |
-| ------------ | --------------------------------------- |
+| Word         | Unlocks                                  |
+| ------------ | ---------------------------------------- |
 | `specialday` | All pages (full day); token is `wedding` |
-| `meal`       | Evening page only                       |
+| `church`     | Ceremony page only; token is `ceremony`  |
+| `meal`       | Evening page only                        |
 
-The ceremony page has no gate — it loads no `guard.js` and is reachable by direct link.
+Every content page is now gated — each loads `guard.js` and declares a `data-requires` token. The `wedding` token satisfies every page; otherwise the token must match the page.
 
 ## File layout
 
@@ -24,7 +25,7 @@ The ceremony page has no gate — it loads no `guard.js` and is reachable by dir
 index.html      hero + gate UI
 gate.js         hashes the input, sets sessionStorage["mm_access"], redirects
 wedding.html    full-day content;   <body data-requires="wedding">
-ceremony.html   church-only content; public — no guard.js, no data-requires
+ceremony.html   church-only content; <body data-requires="ceremony">
 meal.html       evening content;     <body data-requires="meal">
 guard.js        loaded first on each content page; redirects to index.html
                 if sessionStorage token doesn't satisfy data-requires.

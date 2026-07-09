@@ -666,6 +666,21 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     background: transparent;
     color: var(--ink);
 }
+.rsvp-form button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.rsvp-status {
+    justify-self: center;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    max-width: 420px;
+}
+.rsvp-status--sending { color: var(--ink-soft); }
+.rsvp-status--success { color: var(--ink); }
+.rsvp-status--error   { color: #a4443c; }
 
 /* ───── Gift list ───── */
 

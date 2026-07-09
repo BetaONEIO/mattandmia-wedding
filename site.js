@@ -41,6 +41,43 @@
     });
 })();
 
+// RSVP form — submit via FormSubmit's AJAX endpoint so failures (timeouts,
+// activation-pending, etc.) show up on the page instead of just disappearing.
+(() => {
+    document.querySelectorAll('.rsvp-form').forEach((form) => {
+        const status = form.querySelector('.rsvp-status');
+        const button = form.querySelector('button[type="submit"]');
+        if (!status || !button) return;
+
+        const ajaxAction = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.hidden = false;
+            status.className = 'rsvp-status rsvp-status--sending';
+            status.textContent = 'Sending…';
+            button.disabled = true;
+
+            try {
+                const res = await fetch(ajaxAction, {
+                    method: 'POST',
+                    headers: { Accept: 'application/json' },
+                    body: new FormData(form),
+                });
+                if (!res.ok) throw new Error('status ' + res.status);
+                status.className = 'rsvp-status rsvp-status--success';
+                status.textContent = 'Thank you — your RSVP has been sent!';
+                form.reset();
+            } catch (err) {
+                status.className = 'rsvp-status rsvp-status--error';
+                status.textContent = 'Sorry, that didn’t send (the form service may be temporarily down). Please try again in a minute, or use the email link below.';
+            } finally {
+                button.disabled = false;
+            }
+        });
+    });
+})();
+
 // Story carousel — crossfade through photos on a fixed interval.
 (() => {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;

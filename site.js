@@ -68,11 +68,17 @@
                 status.className = 'rsvp-status rsvp-status--success';
                 status.textContent = 'Thank you — your RSVP has been sent!';
                 form.reset();
-            } catch (err) {
-                status.className = 'rsvp-status rsvp-status--error';
-                status.textContent = 'Sorry, that didn’t send (the form service may be temporarily down). Please try again in a minute, or use the email link below.';
-            } finally {
                 button.disabled = false;
+            } catch (err) {
+                // AJAX can fail for reasons that have nothing to do with the
+                // RSVP itself — most notably, FormSubmit only allows CORS
+                // once the destination address has been activated, and the
+                // very first-ever submission is what triggers that
+                // activation email. Fall back to a plain (non-AJAX) submit
+                // so it still gets through; HTMLFormElement.submit() doesn't
+                // re-fire the 'submit' event, so this won't loop.
+                status.hidden = true;
+                form.submit();
             }
         });
     });

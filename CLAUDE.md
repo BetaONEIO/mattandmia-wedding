@@ -29,8 +29,11 @@ ceremony.html   church-only content; guard.js data-requires="ceremony"
 guard.js        loaded first on each content page; redirects to index.html
                 if sessionStorage token doesn't satisfy data-requires.
                 "wedding" satisfies every page; otherwise token must match.
-site.js         countdown timer + "Sign out" links (clears the token)
+site.js         countdown timer, "Sign out" links, RSVP form submit handler
 styles.css      shared styles (Cormorant Garamond + Montserrat, soft palette)
+functions/api/rsvp.js
+                Cloudflare Pages Function — receives RSVP POSTs from both
+                content pages and relays them as email via Brevo's API.
 ```
 
 ## Running locally
@@ -48,7 +51,9 @@ Repo: https://github.com/BetaONEIO/mattandmia-wedding (currently public).
 
 **Live on Cloudflare Pages: https://mattandmia.pages.dev** (a custom domain is planned but not yet attached). Pushing to `main` triggers a new deploy.
 
-- **RSVP forms** post to `miadallyn24@gmail.com` via FormSubmit (formsubmit.co). FormSubmit needs a one-time activation — submit the live form once and click the confirmation email it sends to that address.
+- **RSVP forms** post to `/api/rsvp`, a Cloudflare Pages Function (`functions/api/rsvp.js`) that relays the submission as an email via Brevo, sent straight to `miadallyn24@gmail.com`. Same-origin, so no CORS issues (this replaced an earlier FormSubmit-based version that had intermittent 522s and an activation-email gotcha).
+  - Sender is hardcoded in the function as `admin@betaone.io` (verified sender in the Brevo account).
+  - Requires two Pages project environment variables, set for **both** Production and Preview (Settings → Environment variables): `BREVO_API_KEY` (Secret) and `RSVP_TO_EMAIL` (plain, currently `miadallyn24@gmail.com`). Both are already configured in the live project.
 - **Make repo private** if you want the password words out of public view — the *deployed* JS is still readable by visitors, but the source repo is no longer indexable.
 
 ## Security notes
@@ -78,6 +83,5 @@ Search for these and swap for the real values — they are scattered across `wed
 1. Replace placeholder content with real details (see list above)
 2. Decide on hosting and deploy
 3. Decide on repo visibility (public vs private)
-4. Optional: swap the email RSVP for a form (Tally, Google Form, or a Netlify form)
-5. Optional: add a photo to the hero — currently it's typography on a soft gradient
-6. Optional: rotate the password words once invitations go out, if any leaked
+4. Optional: add a photo to the hero — currently it's typography on a soft gradient
+5. Optional: rotate the password words once invitations go out, if any leaked

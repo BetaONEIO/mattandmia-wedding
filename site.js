@@ -41,15 +41,13 @@
     });
 })();
 
-// RSVP form — submit via FormSubmit's AJAX endpoint so failures (timeouts,
-// activation-pending, etc.) show up on the page instead of just disappearing.
+// RSVP form — submit to our own Cloudflare Pages Function (same-origin, so
+// no CORS concerns) and show sending/success/error status inline.
 (() => {
     document.querySelectorAll('.rsvp-form').forEach((form) => {
         const status = form.querySelector('.rsvp-status');
         const button = form.querySelector('button[type="submit"]');
         if (!status || !button) return;
-
-        const ajaxAction = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -59,7 +57,7 @@
             button.disabled = true;
 
             try {
-                const res = await fetch(ajaxAction, {
+                const res = await fetch(form.action, {
                     method: 'POST',
                     headers: { Accept: 'application/json' },
                     body: new FormData(form),
@@ -68,17 +66,11 @@
                 status.className = 'rsvp-status rsvp-status--success';
                 status.textContent = 'Thank you — your RSVP has been sent!';
                 form.reset();
-                button.disabled = false;
             } catch (err) {
-                // AJAX can fail for reasons that have nothing to do with the
-                // RSVP itself — most notably, FormSubmit only allows CORS
-                // once the destination address has been activated, and the
-                // very first-ever submission is what triggers that
-                // activation email. Fall back to a plain (non-AJAX) submit
-                // so it still gets through; HTMLFormElement.submit() doesn't
-                // re-fire the 'submit' event, so this won't loop.
-                status.hidden = true;
-                form.submit();
+                status.className = 'rsvp-status rsvp-status--error';
+                status.textContent = 'Sorry, that didn’t send. Please try again in a minute, or use the email link below.';
+            } finally {
+                button.disabled = false;
             }
         });
     });

@@ -153,11 +153,10 @@
         <h2>RSVP</h2>
         <p class="rsvp__lead">Kindly reply by <strong>1 August 2026</strong>.</p>
 
-        <!-- Submissions are emailed via FormSubmit (formsubmit.co) to miadallyn24@gmail.com.
-             The FIRST submission triggers a one-time activation email — confirm it once to switch the form on. -->
-        <form class="rsvp-form" action="https://formsubmit.co/miadallyn24@gmail.com" method="POST">
+        <!-- Submissions are relayed via a Cloudflare Pages Function (functions/api/rsvp.js)
+             which sends the email through Brevo. -->
+        <form class="rsvp-form" action="/api/rsvp" method="POST">
             <input type="hidden" name="_subject" value="Wedding RSVP — full day" />
-            <input type="hidden" name="_template" value="table" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="field">

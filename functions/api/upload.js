@@ -61,10 +61,14 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
     if (url.origin !== 'https://www.googleapis.com' || url.pathname !== '/upload/drive/v3/files') {
         throw new Error('Unexpected Drive upload destination');
     }
+    // Workers ignores a manually assigned Content-Length on an ordinary stream.
+    // Preserve streaming while giving Google the exact transfer length.
+    const uploadBody = typeof FixedLengthStream === 'function'
+        ? body.pipeThrough(new FixedLengthStream(size)) : body;
     const saved = await fetch(url.href, {
         method: 'PUT',
         headers: { Authorization: authorization, 'Content-Type': type, 'Content-Length': String(size) },
-        body,
+        body: uploadBody,
         signal: AbortSignal.timeout(20 * 60 * 1000),
         redirect: 'error',
     });

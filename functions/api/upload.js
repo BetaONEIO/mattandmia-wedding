@@ -119,7 +119,8 @@ export async function onRequestPost({ request, env }) {
         return json({ ok: true }, 201);
     } catch (error) {
         const safeMessage = /^(Drive authorisation failed|Could not start Drive upload|Drive did not confirm the saved file|Missing Drive|Unexpected Drive)/.test(error.message)
-            ? error.message : error.name;
+            ? error.message : error.name === 'TypeError'
+                ? error.message.replace(/https?:\/\/\S+/g, '[URL]') : error.name;
         console.error('Wedding upload failed:', safeMessage);
         return json({ error: 'That file didn’t save. Please try again.' }, 502);
     }

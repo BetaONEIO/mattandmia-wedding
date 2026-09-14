@@ -1,8 +1,9 @@
 (() => {
     const home = document.querySelector('[data-guest-home]');
     try {
-        if (home && sessionStorage.getItem('mm_access') === 'wedding') home.href = 'wedding.html';
-    } catch (_) { /* Keep the ceremony link if session storage is unavailable. */ }
+        const access = sessionStorage.getItem('mm_access');
+        if (home && (access === 'wedding' || access === 'ceremony')) home.href = access + '.html';
+    } catch (_) { /* Keep the invitation landing-page link if session storage is unavailable. */ }
     const form = document.getElementById('upload-form');
     if (!form) return;
     const picker = form.querySelector('[type="file"]');

@@ -29,14 +29,24 @@ test('photo page sign-out works without a countdown and does not attach RSVP han
     assert.equal(cleared, 'mm_access');
     assert.equal(context.window.location.href, 'index.html');
 });
-test('direct photo visits return through the invitation gate; both guest roles have access', () => {
+test('ceremony details remain protected for signed-out visitors', () => {
     for (const token of [null, 'ceremony', 'wedding']) {
         let redirected;
         vm.runInNewContext(guard, {
             document: { currentScript: { dataset: { requires: 'ceremony' } } },
             sessionStorage: { getItem: () => token },
-            window: { location: { pathname: '/photos', replace: path => { redirected = path; } } },
+            window: { location: { pathname: '/ceremony', replace: path => { redirected = path; } } },
         });
-        assert.equal(redirected, token ? undefined : 'index.html?next=photos');
+        assert.equal(redirected, token ? undefined : 'index.html');
     }
+});
+
+ test('legacy photo gate links redirect without asking for a password', async () => {
+    const gate = await readFile(new URL('../gate.js', import.meta.url), 'utf8');
+    let redirected;
+    vm.runInNewContext(gate, {
+        URLSearchParams,
+        window: { location: { search: '?next=photos', replace: path => { redirected = path; } } },
+    });
+    assert.equal(redirected, '/photos');
 });

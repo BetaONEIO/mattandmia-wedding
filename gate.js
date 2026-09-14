@@ -1,4 +1,10 @@
 (() => {
+    // Previously shared photo links may still point at the invitation gate.
+    if (new URLSearchParams(window.location.search).get('next') === 'photos') {
+        window.location.replace('/photos');
+        return;
+    }
+
     // specialday → full day (church + reception + evening), token stays "wedding"
     // church     → ceremony / church service only
     // Passwords are compared by SHA-256 hash so the words aren't sitting in plain text.

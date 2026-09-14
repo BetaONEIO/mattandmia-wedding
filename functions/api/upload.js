@@ -31,7 +31,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
         signal: AbortSignal.timeout(30000),
         redirect: 'error',
     });
-    if (!tokenResponse.ok) throw new Error('Drive authorisation failed');
+    if (!tokenResponse.ok) throw new Error('Drive authorisation failed: ' + tokenResponse.status);
     const token = await tokenResponse.json();
     if (typeof token.access_token !== 'string' || !token.access_token) throw new Error('Missing Drive token');
     const authorization = `Bearer ${token.access_token}`;
@@ -54,7 +54,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
         signal: AbortSignal.timeout(30000),
         redirect: 'error',
     });
-    if (!session.ok) throw new Error('Could not start Drive upload');
+    if (!session.ok) throw new Error('Could not start Drive upload: ' + session.status);
     const location = session.headers.get('Location');
     if (!location) throw new Error('Missing Drive upload session');
     const url = new URL(location);
@@ -72,7 +72,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
         signal: AbortSignal.timeout(20 * 60 * 1000),
         redirect: 'error',
     });
-    if (!saved.ok || !(await saved.json()).id) throw new Error('Drive did not confirm the saved file');
+    if (!saved.ok || !(await saved.json()).id) throw new Error('Drive did not confirm the saved file: ' + saved.status);
 }
 
 export async function onRequestGet({ env }) {
@@ -117,7 +117,10 @@ export async function onRequestPost({ request, env }) {
         });
         if (!object) throw new Error('Storage did not confirm the upload');
         return json({ ok: true }, 201);
-    } catch {
+    } catch (error) {
+        const safeMessage = /^(Drive authorisation failed|Could not start Drive upload|Drive did not confirm the saved file|Missing Drive|Unexpected Drive)/.test(error.message)
+            ? error.message : error.name;
+        console.error('Wedding upload failed:', safeMessage);
         return json({ error: 'That file didn’t save. Please try again.' }, 502);
     }
 }

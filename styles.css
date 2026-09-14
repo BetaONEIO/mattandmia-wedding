@@ -758,3 +758,20 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
     .section { padding: 3.5rem 1.25rem; }
     .schedule__time { flex: 0 0 6.5rem; font-size: 1.45rem; }
 }
+
+/* Guest photo and video uploads */
+.upload-lead, .upload-note { max-width: 640px; margin: 0 auto 1.5rem; text-align: center; }
+.upload-note { color: var(--ink-soft); font-size: 0.85rem; margin-top: 1.5rem; }
+.upload-form fieldset { min-width: 0; border: 0; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+.upload-legend { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.25rem; }
+.upload-form label { font-size: 0.85rem; color: var(--ink-soft); }
+.upload-form small { color: var(--ink-soft); line-height: 1.6; }
+.upload-picker { border: 1px dashed var(--accent); border-radius: 6px; background: var(--bg-warm); padding: 1.25rem; }
+.upload-picker input { width: 100%; min-width: 0; font: inherit; font-size: 0.9rem; }
+.upload-form input[type="password"] { width: 100%; padding: 0.75rem 0.9rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg-warm); font: inherit; }
+.upload-form :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.upload-files { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.upload-files li { display: grid; gap: 0.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); overflow-wrap: anywhere; font-size: 0.85rem; }
+.upload-files li span + span { color: var(--ink-soft); }
+.upload-files progress { width: 100%; accent-color: var(--accent); }
+.upload-files progress[hidden] { display: none; }

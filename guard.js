@@ -15,6 +15,7 @@
     const allowed = token === 'wedding' || token === required;
 
     if (!allowed) {
-        window.location.replace('index.html');
+        const next = /^\/photos(?:\.html)?\/?$/.test(window.location.pathname) ? '?next=photos' : '';
+        window.location.replace('index.html' + next);
     }
 })();

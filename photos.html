@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Matt &amp; Mia — Photos &amp; Videos</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="guard.js" data-requires="ceremony"></script>
+</head>
+<body>
+    <nav class="nav" aria-label="Photo page navigation">
+        <a href="ceremony.html" data-guest-home>Wedding details</a>
+        <a href="/photos" aria-current="page">Photos &amp; Videos</a>
+        <a href="#" data-signout class="nav__signout">Sign out</a>
+    </nav>
+    <main>
+    <section id="photos" class="section section--alt">
+        <h2>Through Your Eyes</h2>
+        <p class="upload-lead">The big moments, the little moments, and everything in between. We’d love to see the day through your eyes &mdash; share your photos and videos with us here.</p>
+        <form id="upload-form" class="rsvp-form upload-form">
+            <fieldset disabled>
+                <legend class="upload-legend">Share your photos &amp; videos</legend>
+                <div class="field">
+                    <label for="upload-guest">Your name (optional)</label>
+                    <input id="upload-guest" name="guest" type="text" maxlength="100" autocomplete="name" />
+                </div>
+                <div class="field">
+                    <label for="upload-code">Upload code</label>
+                    <input id="upload-code" name="code" type="password" required maxlength="128" aria-describedby="upload-code-help" />
+                    <small id="upload-code-help">Use the photo upload code shared by Matt &amp; Mia.</small>
+                </div>
+                <div class="field upload-picker">
+                    <label for="upload-picker">Choose photos &amp; videos</label>
+                    <input id="upload-picker" name="files" type="file" accept="image/jpeg,image/png,image/gif,image/webp,image/heic,image/heif,image/avif,video/mp4,video/quicktime,video/x-m4v,video/webm,video/3gpp,.heic,.heif,.mov,.m4v" multiple required aria-describedby="upload-help" />
+                    <small id="upload-help">Choose several files at once. Up to 90 MB per file. JPG, PNG, GIF, WebP, HEIC, HEIF, AVIF, MP4, MOV, M4V, WebM and 3GP accepted. For longer videos, trim into shorter clips before uploading.</small>
+                </div>
+                <button type="submit" disabled>Upload photos &amp; videos</button>
+            </fieldset>
+            <p id="upload-status" class="rsvp-status" role="status">Checking uploads…</p>
+            <ul id="upload-files" class="upload-files" aria-label="Selected files"></ul>
+            <noscript>Please enable JavaScript to upload your photos and videos.</noscript>
+        </form>
+        <p class="upload-note">Your uploads go privately to Matt &amp; Mia and won’t appear in a public gallery. Please keep this page open while uploading; Wi-Fi is best for videos.</p>
+    </section>
+    </main>
+    <footer class="footer">
+        <p>With love, Matt &amp; Mia</p>
+    </footer>
+    <script src="site.js"></script>
+    <script src="uploads.js"></script>
+</body>
+</html>

@@ -42,6 +42,7 @@
         try {
             sessionStorage.setItem('mm_access', route.token);
         } catch (_) { /* private mode — fall through */ }
-        window.location.href = route.target;
+        const next = new URLSearchParams(window.location.search).get('next');
+        window.location.href = next === 'photos' ? '/photos' : route.target;
     });
 })();

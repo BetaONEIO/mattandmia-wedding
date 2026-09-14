@@ -31,6 +31,9 @@
     tick();
     setInterval(tick, 1000);
 
+})();
+
+(() => {
     // Sign out clears the gate token and returns to the landing page.
     document.querySelectorAll('[data-signout]').forEach(el => {
         el.addEventListener('click', (e) => {
@@ -44,7 +47,7 @@
 // RSVP form — submit to our own Cloudflare Pages Function (same-origin, so
 // no CORS concerns) and show sending/success/error status inline.
 (() => {
-    document.querySelectorAll('.rsvp-form').forEach((form) => {
+    document.querySelectorAll('.rsvp-form[action="/api/rsvp"]').forEach((form) => {
         const status = form.querySelector('.rsvp-status');
         const button = form.querySelector('button[type="submit"]');
         if (!status || !button) return;

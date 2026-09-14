@@ -775,3 +775,5 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: 0.01em
 .upload-files li span + span { color: var(--ink-soft); }
 .upload-files progress { width: 100%; accent-color: var(--accent); }
 .upload-files progress[hidden] { display: none; }
+.upload-link { display: inline-block; padding: 0.85rem 1.5rem; border: 1px solid var(--ink); background: var(--ink); color: white; border-radius: 4px; }
+.upload-link:hover { background: transparent; color: var(--ink); text-decoration: none; }

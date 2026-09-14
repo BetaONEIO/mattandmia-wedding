@@ -1,6 +1,8 @@
 # Guest photos and videos
 
-Both guest pages have a Photos & Videos navigation link and a private upload form.
+The dedicated `/photos` page has the private upload form. Both guest pages link
+to it. Direct visitors enter their existing invitation password and return to
+`/photos` after signing in; either guest access level can use it.
 Guests can select multiple files, add their name, and enter a shared upload code.
 Files upload sequentially with progress; retrying a failed batch skips files already
 confirmed as saved. Originals are stored without conversion. There is no public

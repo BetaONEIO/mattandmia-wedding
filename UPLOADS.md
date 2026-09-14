@@ -1,9 +1,8 @@
 # Guest photos and videos
 
 The dedicated `/photos` page has the private upload form. Both guest pages link
-to it. `/photos` opens without an invitation password for all guests. Sending
-files still requires the shared upload code; stored files remain private.
-Guests can select multiple files, add their name, and enter a shared upload code.
+to it. `/photos` opens without an invitation password for all guests. Anyone with the link can send files; stored files remain private.
+Guests can select multiple files and optionally add their name. No password or upload code is required.
 Files upload sequentially with progress; retrying a failed batch skips files already
 confirmed as saved. Originals are stored without conversion. There is no public
 listing, gallery, or download endpoint.
@@ -14,26 +13,17 @@ listing, gallery, or download endpoint.
    Cloudflare account. Keep the public development URL and custom-domain access off.
 2. In the Pages project's Settings → Bindings, add an R2 bucket binding named
    `WEDDING_UPLOADS` pointing to that bucket.
-3. In Settings → Variables and Secrets, add a secret named `UPLOAD_CODE` with a
-   memorable, unique code (at most 128 characters). Share it with attendees. This
-   code is case-sensitive and separate from the existing site passwords. Do not
-   put it in source control or client-side JavaScript.
-4. Configure Production. If enabling Preview too, use a separate test bucket and
-   code so previews cannot write to the wedding collection.
-5. Deploy the code, or redeploy after changing bindings. This repository deploys
-   automatically when pushed to `main`.
-6. On the deployed site, test a real phone photo and short video, confirm both
-   objects exist in the private R2 bucket, and test a wrong upload code. Check on
-   iPhone and Android if possible before sharing with guests.
+3. Configure Production. If enabling Preview too, use a separate test bucket.
+4. Deploy the code, or redeploy after changing bindings. Pushing to `main`
+   automatically deploys this repository.
+5. Test a photo and short video on the deployed site and confirm both objects
+   exist in the private bucket.
 
-Production was configured on 14 September 2026 with the private R2 bucket
-`mattandmia-guest-uploads`, the `WEDDING_UPLOADS` binding, and an `UPLOAD_CODE`
-secret. Public development access is disabled and no custom bucket domains are
-configured. Preview uploads remain disabled. The secret is not stored in this repository.
-
-The application itself does not create Cloudflare resources or secrets.
-Without both settings, the page displays “Uploads aren’t open yet” and disables
-uploading. Remove `UPLOAD_CODE` and redeploy when submissions should close.
+Production uses `mattandmia-guest-uploads` through the `WEDDING_UPLOADS` binding.
+Public bucket access is disabled and no custom bucket domains are configured.
+Preview uploads remain disabled. The former `UPLOAD_CODE` secret is not used.
+Without the R2 binding, the form disables uploading. Remove the binding and
+redeploy to close submissions.
 
 ## Retrieve the files
 
@@ -51,9 +41,8 @@ Keep originals until you have a verified backup; no automatic deletion is config
   Validation uses the extension; files are private attachments, not rendered by
   the website. This is not content scanning.
 - The server streams the request body directly to R2 without buffering videos.
-- The upload code protects the write endpoint independently of the site's light
-  client-side gate. A shared code is not individual guest authentication. Rotate
-  it if it is shared beyond the guests; R2 usage is billed to the hosting account.
+- The upload endpoint is open to anyone with the link. Same-origin checks and
+  file limits still apply. R2 usage is billed to the hosting account.
 - Keep the page open and phone awake while sending files. Interrupted files can
   be retried; there is no cross-refresh resume. A connection lost after storage
   completes can result in a duplicate on retry.

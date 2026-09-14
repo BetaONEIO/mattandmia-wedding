@@ -11,19 +11,15 @@ const json = (body, status = 200) => Response.json(body, {
 });
 
 export async function onRequestGet({ env }) {
-    return json({ available: Boolean(env.WEDDING_UPLOADS && env.UPLOAD_CODE), maxBytes: MAX_BYTES });
+    return json({ available: Boolean(env.WEDDING_UPLOADS), maxBytes: MAX_BYTES });
 }
 
 export async function onRequestPost({ request, env }) {
-    if (!env.WEDDING_UPLOADS || !env.UPLOAD_CODE) {
+    if (!env.WEDDING_UPLOADS) {
         return json({ error: 'Uploads aren’t open yet. Please keep your photos and try again later.' }, 503);
     }
     if (request.headers.get('Origin') !== new URL(request.url).origin) {
         return json({ error: 'Please upload from the wedding website.' }, 403);
-    }
-    const code = request.headers.get('X-Upload-Code') || '';
-    if (code !== env.UPLOAD_CODE) {
-        return json({ error: 'That upload code doesn’t look right. Please check with Matt & Mia.' }, 401);
     }
     const size = Number(request.headers.get('Content-Length'));
     if (!Number.isSafeInteger(size) || size <= 0 || size > MAX_BYTES || !request.body) {

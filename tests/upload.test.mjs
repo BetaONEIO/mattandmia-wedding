@@ -7,21 +7,21 @@ function context(overrides = {}, envOverrides = {}) {
     return {
         request: new Request('https://wedding.example/api/upload', {
             method: 'POST', body: new Uint8Array([1, 2, 3]),
-            headers: { Origin: 'https://wedding.example', 'X-Upload-Code': 'guest-secret',
+            headers: { Origin: 'https://wedding.example',
                 'Content-Length': '3', 'X-File-Name': 'IMG_1234.HEIC',
                 'X-Guest-Name': encodeURIComponent('Zoë'), ...overrides },
         }),
-        env: { UPLOAD_CODE: 'guest-secret', WEDDING_UPLOADS: { put: async () => ({}) }, ...envOverrides },
+        env: { WEDDING_UPLOADS: { put: async () => ({}) }, ...envOverrides },
     };
 }
 test('configuration status reveals no secrets and disables unconfigured uploads', async () => {
     assert.deepEqual(await (await onRequestGet({ env: {} })).json(), { available: false, maxBytes: 94371840 });
     assert.equal((await onRequestPost(context({}, { WEDDING_UPLOADS: null }))).status, 503);
 });
-test('rejects missing/wrong codes and foreign origins before storage', async () => {
-    for (const headers of [{ 'X-Upload-Code': '' }, { 'X-Upload-Code': 'wrong' }, { Origin: 'https://other.example' }]) {
+test('rejects foreign and missing origins before storage', async () => {
+    for (const headers of [{ Origin: '' }, { Origin: 'https://other.example' }]) {
         const result = await onRequestPost(context(headers, { WEDDING_UPLOADS: { put: () => assert.fail('must not store') } }));
-        assert.ok([401, 403].includes(result.status));
+        assert.equal(result.status, 403);
     }
 });
 test('rejects unsupported, empty, oversized, malformed uploads', async () => {
@@ -53,4 +53,10 @@ test('storage failure never reports success or exposes provider errors', async (
     const response = await onRequestPost(context({}, { WEDDING_UPLOADS: { put: async () => { throw Error('secret provider detail'); } } }));
     assert.equal(response.status, 502);
     assert.ok(!(await response.text()).includes('secret'));
+});
+
+test('uploads are available and save without a code or secret', async () => {
+    const ctx = context();
+    assert.equal((await (await onRequestGet(ctx)).json()).available, true);
+    assert.equal((await onRequestPost(ctx)).status, 201);
 });

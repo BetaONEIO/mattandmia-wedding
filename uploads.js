@@ -48,7 +48,6 @@
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/api/upload');
             xhr.timeout = 20 * 60 * 1000;
-            xhr.setRequestHeader('X-Upload-Code', form.elements.code.value.trim());
             xhr.setRequestHeader('X-Guest-Name', encodeURIComponent(form.elements.guest.value.trim()));
             xhr.setRequestHeader('X-File-Name', encodeURIComponent(item.file.name));
             xhr.setRequestHeader('Content-Type', 'application/octet-stream');

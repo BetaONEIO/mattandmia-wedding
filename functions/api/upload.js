@@ -29,7 +29,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
             grant_type: 'refresh_token',
         }),
         signal: AbortSignal.timeout(30000),
-        redirect: 'error',
+        redirect: 'manual',
     });
     if (!tokenResponse.ok) throw new Error('Drive authorisation failed: ' + tokenResponse.status);
     const token = await tokenResponse.json();
@@ -52,7 +52,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
             description: `Wedding guest upload from ${guest || 'Anonymous'}`,
         }),
         signal: AbortSignal.timeout(30000),
-        redirect: 'error',
+        redirect: 'manual',
     });
     if (!session.ok) throw new Error('Could not start Drive upload: ' + session.status);
     const location = session.headers.get('Location');
@@ -70,7 +70,7 @@ async function uploadToDrive(env, body, { name, guest, type, size }) {
         headers: { Authorization: authorization, 'Content-Type': type, 'Content-Length': String(size) },
         body: uploadBody,
         signal: AbortSignal.timeout(20 * 60 * 1000),
-        redirect: 'error',
+        redirect: 'manual',
     });
     if (!saved.ok || !(await saved.json()).id) throw new Error('Drive did not confirm the saved file: ' + saved.status);
 }
